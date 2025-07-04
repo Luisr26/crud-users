@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Document metadata and character encoding -->
+  <meta charset="UTF-8" />
+  <!-- Link to custom CSS styles -->
+  <link rel="stylesheet" href="./src/styles/styles.css">
+  <!-- Viewport configuration for responsive design -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Page title displayed in browser tab -->
+  <title>CRUD Products Management</title>
+</head>
+
+<body class="">
+  <!-- Main header section with page title -->
+  <header class="container-header">
+    <h1 class="text-center">CRUD Products</h1>
+  </header>
+  
+  <!-- Main content container -->
+  <main class="container-main">
+    
+    <!-- Product creation form section -->
+    <section class="container-form">
+      <article class="sub-container-form">
+        <!-- Form for adding new products -->
+        <form class="myForm">
+          <!-- Container for all form input fields -->
+          <div class="container-form-inputs">
+            
+            <!-- Product name input field -->
+            <div class="col-auto">
+              <label class="visually-hidden">Name Product</label>
+              <input type="text" class="form-control" id="name-input" placeholder="Name Product">
+            </div>
+            
+            <!-- Product quantity input field (numeric) -->
+            <div class="col-auto">
+              <label class="visually-hidden">Quantity Product</label>
+              <input type="number" class="form-control" placeholder="Quantity Product" id="quantity-input">
+            </div>
+            
+            <!-- Product price input field (numeric) -->
+            <div class="col-auto">
+              <label class="visually-hidden">Price Product</label>
+              <input type="number" class="form-control" placeholder="Price Product" id="price-input">
+            </div>
+            
+            <!-- Company name input field -->
+            <div class="col-auto">
+              <label class="visually-hidden">Company</label>
+              <input type="text" class="form-control" placeholder="Company" id="company-input">
+            </div>
+            
+            <!-- Category selection dropdown -->
+            <div class="col-auto">
+              <select class="form-select" aria-label="Default select example" id="category">
+                <option selected value="" disabled>Open to select category</option>
+                <option>Clothes</option>
+                <option>Food</option>
+                <option>Technology</option>
+                <option>Cars</option>
+              </select>
+            </div>
+            
+          </div>
+          
+          <!-- Form action buttons container -->
+          <div class="container-btn-form">
+            <!-- Save button to submit new product -->
+            <button type="submit" class="btn btn-primary mb-3 bt-form" id="btn-save">Save</button>
+            <!-- Clear button to reset form fields -->
+            <button type="reset" class="btn btn-primary mb-3 bt-form" id="btn-clear">Clear</button>
+          </div>
+        </form>
+      </article>
+    </section>
+    
+    <!-- Products display table section -->
+    <section class="container-table">
+      <article class="sub-container-table">
+        <!-- Table to display all products with dark theme -->
+        <table class="table table-form table-dark">
+          <!-- Table header with column titles -->
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Quantity</th>
+              <th>Price</th>
+              <th>Category</th>
+              <th>Enterprise</th>
+              <th class="options-form">Options</th>
+            </tr>
+          </thead>
+          <!-- Table body where product rows will be dynamically inserted -->
+          <tbody class="tbody-form">
+            <!-- Dynamic product rows will be inserted here by JavaScript -->
+          </tbody>
+        </table>
+      </article>
+    </section>
+    
+    <!-- Modal section for updating existing products -->
+    <section>
+      <!-- Bootstrap modal for product editing -->
+      <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            
+            <!-- Modal header with title and close button -->
+            <div class="modal-header">
+              <h5 class="modal-title" id="myModalLabel">Update Product</h5>
+              <!-- Close button with proper aria-label -->
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            
+            <!-- Modal body containing update form fields -->
+            <div class="modal-body">
+              <div class="container-modal">
+                
+                <!-- Updated product name input -->
+                <div>
+                  <label for="" class="label-form">Name</label>
+                  <input type="text" placeholder="Enter the new name" id="new-name">
+                </div>
+                
+                <!-- Updated product price input -->
+                <div>
+                  <label for="" class="label-form">Price</label>
+                  <input type="number" placeholder="Enter the new price" id="new-price">
+                </div>
+                
+                <!-- Updated product quantity input -->
+                <div>
+                  <label for="" class="label-form">Quantity</label>
+                  <input type="number" placeholder="Enter the new quantity" id="new-quantity">
+                </div>
+                
+                <!-- Updated company name input -->
+                <div>
+                  <label for="" class="label-form">Company</label>
+                  <input type="text" placeholder="Enter the new company name" id="new-company">
+                </div>
+                
+                <!-- Updated category selection dropdown -->
+                <div class="col-auto">
+                  <label for="" class="label-form">Category</label>
+                  <select class="form-select" aria-label="Default select example" id="new-category">
+                    <option selected>Open to select category</option>
+                    <option>Clothes</option>
+                    <option>Food</option>
+                    <option>Technology</option>
+                    <option>Cars</option>
+                  </select>
+                </div>
+                
+              </div>
+            </div>
+            
+            <!-- Modal footer with action buttons -->
+            <div class="modal-footer">
+              <!-- Update button to save changes -->
+              <button type="button" class="btn-update-modal btn btn-secondary update-btn-modal">Update</button>
+              <!-- Close button to dismiss modal -->
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+    
+  </main>
+  
+  <!-- JavaScript module import for application functionality -->
+  <script type="module" src="./src/js/main.js"></script>
+</body>
+
+</html>

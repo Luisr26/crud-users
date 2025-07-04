@@ -1,0 +1,823 @@
+/* Import Google Fonts - Inter font family with multiple weights */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+/* Import Font Awesome icons library */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+/* CSS Custom Properties (Variables) - Design System */
+:root {
+  /* Dark theme color palette */
+  --primary-dark: #0a0e1a;      /* Darkest background color */
+  --secondary-dark: #1a1f2e;    /* Secondary background */
+  --accent-dark: #2a3441;       /* Accent background */
+  --light-dark: #3d4a5c;        /* Lighter dark tone */
+  --border-color: #4a5568;      /* Border color */
+  
+  /* Blue accent colors for interactive elements */
+  --primary-blue: #3b82f6;      /* Main blue color */
+  --primary-blue-hover: #2563eb; /* Blue hover state */
+  --primary-blue-light: #60a5fa; /* Light blue variant */
+  --secondary-blue: #1e40af;    /* Darker blue */
+  
+  /* Text color hierarchy */
+  --text-primary: #ffffff;      /* Primary text - white */
+  --text-secondary: #e2e8f0;    /* Secondary text - light gray */
+  --text-muted: #94a3b8;        /* Muted text - gray */
+  --text-accent: #cbd5e1;       /* Accent text */
+  
+  /* Status colors for feedback */
+  --success: #10b981;           /* Success green */
+  --success-hover: #059669;     /* Success hover state */
+  --warning: #f59e0b;           /* Warning orange */
+  --danger: #ef4444;            /* Danger red */
+  --danger-hover: #dc2626;      /* Danger hover state */
+  
+  /* Box shadow definitions */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  
+  /* Spacing scale */
+  --space-xs: 0.25rem;          /* 4px */
+  --space-sm: 0.5rem;           /* 8px */
+  --space-md: 1rem;             /* 16px */
+  --space-lg: 1.5rem;           /* 24px */
+  --space-xl: 2rem;             /* 32px */
+  --space-2xl: 3rem;            /* 48px */
+  
+  /* Border radius scale */
+  --radius-sm: 0.25rem;         /* Small rounded corners */
+  --radius-md: 0.5rem;          /* Medium rounded corners */
+  --radius-lg: 0.75rem;         /* Large rounded corners */
+  --radius-xl: 1rem;            /* Extra large rounded corners */
+  
+  /* Transition timing */
+  --transition-fast: 0.15s ease-out;    /* Fast animations */
+  --transition-normal: 0.3s ease-out;   /* Normal animations */
+  --transition-slow: 0.5s ease-out;     /* Slow animations */
+  
+  /* Typography system */
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-size-xs: 0.75rem;      /* 12px */
+  --font-size-sm: 0.875rem;     /* 14px */
+  --font-size-base: 1rem;       /* 16px */
+  --font-size-lg: 1.125rem;     /* 18px */
+  --font-size-xl: 1.25rem;      /* 20px */
+  --font-size-2xl: 1.5rem;      /* 24px */
+  --font-size-3xl: 1.875rem;    /* 30px */
+  --font-size-4xl: 2.25rem;     /* 36px */
+  
+  /* Line height values */
+  --leading-tight: 1.25;        /* Tight line spacing */
+  --leading-normal: 1.5;        /* Normal line spacing */
+  --leading-loose: 1.75;        /* Loose line spacing */
+}
+
+/* Universal box model reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;       /* Include padding and border in element's total width/height */
+  margin: 0;                    /* Remove default margins */
+  padding: 0;                   /* Remove default padding */
+}
+
+/* HTML root element styling */
+html {
+  font-size: 16px;              /* Base font size */
+  scroll-behavior: smooth;       /* Smooth scrolling for anchor links */
+}
+
+/* Body element - main container styling */
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  line-height: var(--leading-normal);
+  color: var(--text-primary);
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
+  min-height: 100vh;             /* Full viewport height */
+  overflow-x: hidden;            /* Prevent horizontal scrolling */
+}
+
+/* Utility class for centered text */
+.text-center {
+  text-align: center;
+}
+
+/* Accessibility helper - hides content visually but keeps it for screen readers */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Header container - sticky navigation */
+.container-header {
+  background: linear-gradient(135deg, var(--secondary-dark) 0%, var(--accent-dark) 100%);
+  backdrop-filter: blur(10px);   /* Blur effect for modern look */
+  border-bottom: 2px solid var(--border-color);
+  padding: var(--space-xl) var(--space-md);
+  position: sticky;              /* Sticks to top when scrolling */
+  top: 0;
+  z-index: 100;                  /* High z-index to stay above other content */
+  box-shadow: var(--shadow-lg);
+}
+
+/* Main heading in header */
+.container-header h1 {
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+}
+
+/* Font Awesome icon before heading text */
+.container-header h1::before {
+  content: '\f1b2';              /* Font Awesome cube icon */
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  color: var(--primary-blue);
+  font-size: var(--font-size-2xl);
+}
+
+/* Main content container */
+.container-main {
+  max-width: 1200px;             /* Maximum width constraint */
+  margin: 0 auto;                /* Center horizontally */
+  padding: var(--space-2xl) var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl);
+}
+
+/* Form container styling */
+.container-form {
+  background: var(--secondary-dark);
+  border-radius: var(--radius-xl);
+  padding: var(--space-2xl);
+  box-shadow: var(--shadow-xl);
+  border: 1px solid var(--border-color);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Top accent line for form container */
+.container-form::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-blue) 0%, var(--primary-blue-light) 100%);
+}
+
+/* Sub-container for form content */
+.sub-container-form {
+  position: relative;
+}
+
+/* Form layout */
+.myForm {
+  display: grid;
+  gap: var(--space-lg);
+}
+
+/* Form inputs container - responsive grid */
+.container-form-inputs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-lg);
+}
+
+/* Column layout for form fields */
+.col-auto {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+/* Form input and select styling */
+.form-control,
+.form-select {
+  background: var(--accent-dark);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  color: var(--text-primary);
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  transition: all var(--transition-normal);
+  position: relative;
+}
+
+/* Focus states for form inputs */
+.form-control:focus,
+.form-select:focus {
+  outline: none;
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  background: var(--light-dark);
+}
+
+/* Placeholder styling */
+.form-control::placeholder {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+/* Select dropdown option styling */
+.form-select option {
+  background: var(--accent-dark);
+  color: var(--text-primary);
+}
+
+/* Form buttons container */
+.container-btn-form {
+  display: flex;
+  gap: var(--space-md);
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: var(--space-lg);
+}
+
+/* Base button styling */
+.bt-form {
+  padding: var(--space-md) var(--space-xl);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+  min-width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+}
+
+/* Save button styling */
+#btn-save {
+  background: var(--primary-blue);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-md);
+}
+
+/* Save button hover effect */
+#btn-save:hover {
+  background: linear-gradient(135deg, var(--primary-blue-hover) 0%, var(--secondary-blue) 100%);
+  transform: translateY(-2px);   /* Lift effect */
+  box-shadow: var(--shadow-lg);
+}
+
+/* Font Awesome save icon */
+#btn-save::before {
+  content: '\f0c7';              /* Save icon */
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+}
+
+/* Clear button styling */
+#btn-clear {
+  background: linear-gradient(135deg, var(--light-dark) 0%, var(--border-color) 100%);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-md);
+}
+
+/* Clear button hover effect */
+#btn-clear:hover {
+  background: linear-gradient(135deg, var(--border-color) 0%, var(--light-dark) 100%);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Font Awesome clear icon */
+#btn-clear::before {
+  content: '\f2ed';              /* Eraser icon */
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+}
+
+/* Table container styling */
+.container-table {
+  background: var(--secondary-dark);
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-xl);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+}
+
+/* Table wrapper for horizontal scrolling */
+.sub-container-table {
+  overflow-x: auto;
+  border-radius: var(--radius-lg);
+}
+
+/* Table styling */
+.table-form {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--accent-dark);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+/* Table header styling */
+.table-form thead {
+  background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+}
+
+/* Table header cells */
+.table-form th {
+  padding: var(--space-lg);
+  text-align: left;
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-primary);
+  border-bottom: 2px solid var(--border-color);
+}
+
+/* Table data cells */
+.table-form td {
+  padding: var(--space-lg);
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  font-weight: 500;
+  vertical-align: middle;
+}
+
+/* Table row transition */
+.table-form tbody tr {
+  transition: all var(--transition-fast);
+}
+
+/* Table row hover effect */
+.table-form tbody tr:hover {
+  background: var(--light-dark);
+  transform: scale(1.01);        /* Slight scale effect */
+}
+
+/* Remove border from last row */
+.table-form tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Options column width */
+.options-form {
+  width: 150px;
+  text-align: center;
+}
+
+/* Modal content styling */
+.modal-content {
+  background: var(--secondary-dark);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
+}
+
+/* Modal header */
+.modal-header {
+  background: linear-gradient(135deg, var(--accent-dark) 0%, var(--light-dark) 100%);
+  border-bottom: 2px solid var(--border-color);
+  padding: var(--space-xl);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+}
+
+/* Modal title */
+.modal-title {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+/* Modal title icon */
+.modal-title::before {
+  content: '\f044';              /* Edit icon */
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  color: var(--primary-blue);
+}
+
+/* Modal body */
+.modal-body {
+  padding: var(--space-xl);
+}
+
+/* Modal form container */
+.container-modal {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+/* Modal form field containers */
+.container-modal > div {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+/* Modal form labels */
+.container-modal > div > label {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: var(--font-size-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Modal form inputs */
+.container-modal > div > input,
+#new-category {
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  border: 2px solid var(--border-color);
+  background: var(--accent-dark);
+  color: var(--text-primary);
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  transition: all var(--transition-normal);
+}
+
+/* Modal form input focus states */
+.container-modal > div > input:focus,
+#new-category:focus {
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  outline: none;
+  background: var(--light-dark);
+}
+
+/* Modal footer */
+.modal-footer {
+  background: var(--accent-dark);
+  border-top: 2px solid var(--border-color);
+  padding: var(--space-xl);
+  border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-md);
+}
+
+/* Modal footer buttons */
+.modal-footer .btn {
+  padding: var(--space-md) var(--space-xl);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  transition: all var(--transition-normal);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+/* Update button in modal */
+.btn-update-modal {
+  background: linear-gradient(135deg, var(--success) 0%, var(--success-hover) 100%);
+  color: var(--text-primary);
+}
+
+/* Update button hover effect */
+.btn-update-modal:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Update button icon */
+.btn-update-modal::before {
+  content: '\f2f1';              /* Refresh icon */
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+}
+
+/* Modal dismiss button */
+.modal-footer .btn[data-bs-dismiss="modal"] {
+  background: linear-gradient(135deg, var(--light-dark) 0%, var(--border-color) 100%);
+  color: var(--text-primary);
+}
+
+/* Modal dismiss button hover effect */
+.modal-footer .btn[data-bs-dismiss="modal"]:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Modal dismiss button icon */
+.modal-footer .btn[data-bs-dismiss="modal"]::before {
+  content: '\f00d';              /* Close icon */
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+}
+
+/* Modal body label color override */
+.modal-body label {
+  color: var(--accent-dark);
+  font-weight: 600;
+}
+
+/* Large tablets and small desktops */
+@media (max-width: 1024px) {
+  .container-main {
+    padding: var(--space-xl) var(--space-md);
+  }
+  
+  .container-form-inputs {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+  .container-header h1 {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .container-main {
+    padding: var(--space-lg) var(--space-sm);
+    gap: var(--space-xl);
+  }
+  
+  .container-form,
+  .container-table {
+    padding: var(--space-lg);
+  }
+  
+  .container-form-inputs {
+    grid-template-columns: 1fr;    /* Single column on tablets */
+  }
+  
+  .container-btn-form {
+    flex-direction: column;        /* Stack buttons vertically */
+  }
+  
+  .bt-form {
+    width: 100%;                   /* Full width buttons */
+  }
+  
+  .table-form th,
+  .table-form td {
+    padding: var(--space-sm);
+    font-size: var(--font-size-sm);
+  }
+  
+  .modal-dialog {
+    margin: var(--space-sm);
+  }
+  
+  .modal-body,
+  .modal-footer,
+  .modal-header {
+    padding: var(--space-lg);
+  }
+}
+
+/* Mobile phones */
+@media (max-width: 480px) {
+  .container-header {
+    padding: var(--space-lg) var(--space-sm);
+  }
+  
+  .container-header h1 {
+    font-size: var(--font-size-xl);
+  }
+  
+  .table-form th,
+  .table-form td {
+    padding: var(--space-xs);
+    font-size: var(--font-size-xs);
+  }
+  
+  .options-form {
+    width: 100px;
+  }
+}
+
+/* Loading state styling */
+.loading {
+  opacity: 0.6;                  /* Dimmed appearance */
+  pointer-events: none;          /* Disable interactions */
+  position: relative;
+}
+
+/* Loading spinner */
+.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid var(--primary-blue);
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spin 1s linear infinite;
+}
+
+/* Spin animation for loading spinner */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Hover effects for form elements */
+.form-control:hover,
+.form-select:hover {
+  border-color: var(--primary-blue-light);
+}
+
+/* Table row hover text color change */
+.table-form tbody tr:hover td {
+  color: var(--text-primary);
+}
+
+/* Focus-visible styles for accessibility */
+.form-control:focus-visible,
+.form-select:focus-visible,
+.bt-form:focus-visible,
+.modal-footer .btn:focus-visible {
+  outline: 2px solid var(--primary-blue);
+  outline-offset: 2px;
+}
+
+/* Fade-in animation class */
+.fade-in {
+  animation: fadeIn var(--transition-normal);
+}
+
+/* Fade-in keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Slide-in animation class */
+.slide-in {
+  animation: slideIn var(--transition-normal);
+}
+
+/* Slide-in keyframes */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Reduced motion preference support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+  
+  .container-header,
+  .container-btn-form,
+  .modal,
+  .options-form {
+    display: none;                /* Hide interactive elements */
+  }
+  
+  .table-form {
+    border: 1px solid black;
+  }
+  
+  .table-form th,
+  .table-form td {
+    border: 1px solid black;
+  }
+}
+
+/* Button container for table actions */
+.container-btn {
+  display: flex;
+  gap: 0.5em;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Table action buttons */
+.btn-update,
+.btn-delete {
+  padding: 0.4em 0.8em;
+  font-size: 0.9em;
+  font-weight: bold;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+/* Update button styling */
+.btn-update {
+  background-color: var(--primary-blue);
+}
+
+.btn-update:hover {
+  background-color: var(--primary-hover);
+}
+
+/* Delete button styling */
+.btn-delete {
+  background-color: #d33;        /* Red color for delete */
+}
+
+.btn-delete:hover {
+  background-color: #a00;        /* Darker red on hover */
+}
+
+/* Update button in modal */
+.update-btn-modal {
+  background-color: var(--primary-blue);
+  color: white;
+  font-weight: bold;
+  padding: 0.5em 1em;
+  border: none;
+  border-radius: 5px;
+}
+
+.update-btn-modal:hover {
+  background-color: var(--primary-hover);
+}
+
+/* SweetAlert2 toast styling */
+.swal2-toast {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--dark-blue-2);
+  color: var(--text-light);
+  border: 1px solid var(--primary-blue);
+  border-radius: 6px;
+}
+
+/* SweetAlert2 popup title */
+.swal2-popup .swal2-title {
+  color: var(--text-light);
+}
+
+/* Active table row styling */
+.table-active {
+  background-color: rgba(65, 90, 119, 0.4);
+}
+
+/* Ensure horizontal scrolling for table */
+.sub-container-table {
+  overflow-x: auto;
+}
+
+/* Mobile responsive adjustments for buttons */
+@media (max-width: 600px) {
+  .container-btn {
+    flex-direction: column;       /* Stack buttons vertically */
+  }
+
+  .btn-update,
+  .btn-delete {
+    width: 100%;                  /* Full width buttons */
+    font-size: 0.8em;
+  }
+}
