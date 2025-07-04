@@ -50,7 +50,7 @@ Un sistema completo de gestión de inventario desarrollado con tecnologías web 
 
 1. **Clonar el repositorio**
 ```bash
-git clone https://github.com/Luisr26/SPA_Inventory.git
+git clone https://github.com/Luisr26/crud-users
 cd SPA_Inventory
 ```
 
